@@ -1,0 +1,15 @@
+{
+  "name": "machine-race-counter",
+  "version": "0.0.1",
+  "description": "A counter for the JI machine race",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
+    "http-server": "^0.9.0",
+    "jquery": "^3.2.1"
+  }
+}
