@@ -2,13 +2,20 @@ body {
     background-color: black;
 }
 
-.footer {
+.btn-group-bottom {
     position: absolute;
-    bottom: 20px;
+    bottom: 50px;
     width: 100%;
 }
 
-h1, h2, h3, h4, h5, .display-4 {
+.footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    color: aliceblue;
+}
+
+h1, h2, h3, h4, h5 {
     color: aliceblue;
 }
 
@@ -22,4 +29,12 @@ h1, h2, h3, h4, h5, .display-4 {
 
 select {
     width: 150px;
+}
+
+.team-red {
+    color: crimson;
+}
+
+.team-blue {
+    color: dodgerblue;
 }
