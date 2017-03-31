@@ -3,12 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/flipclock/compiled/flipclock.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="node_modules/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="style.css">
     <title>Title</title>
 </head>
 <body>
 
+<div class="container-fluid">
+    <div class="row" id="main-wrapper">
+        <div class="col-3 text-center">
+            <h2 class="mt-5">红队</h2>
+            <select id="select-left">
+                <option></option>
+            </select>
+            <div class="display-4 mt-5" id="left-team-name"></div>
+        </div>
+        <div class="col-6" align="center">
+            <h1 class="mt-5" id="text-main"></h1>
+            <div class="clock clock-main" id="clock-main"></div>
+            <button class="btn btn-outline-secondary" id="btn-start"><i class="fa fa-play"></i></button>
+        </div>
+        <div class="col-3 text-center">
+            <h2 class="mt-5">蓝队</h2>
+            <select id="select-right">
+                <option></option>
+            </select>
+            <div class="display-4 mt-5" id="right-team-name"></div>
+        </div>
+    </div>
+
+    <div align="center" id="debug-wrapper">
+        <h5 class="mt-5">调试剩余时间</h5>
+        <div class="clock clock-pause" id="clock-debug"></div>
+        <button class="btn btn-outline-secondary" id="btn-debug"><i class="fa fa-cog"></i></button>
+    </div>
+    <div class="row" id="pause-wrapper">
+        <div class="col-4 offset-1" align="center">
+            <h5 class="mt-5">暂停剩余时间</h5>
+            <div class="clock clock-pause" id="clock-left-pause"></div>
+            <button class="btn btn-outline-secondary" id="btn-left-pause"><i class="fa fa-pause"></i></button>
+        </div>
+        <div class="col-4 offset-2" align="center">
+            <h5 class="mt-5">暂停剩余时间</h5>
+            <div class="clock clock-pause" id="clock-right-pause"></div>
+            <button class="btn btn-outline-secondary" id="btn-right-pause"><i class="fa fa-pause"></i></button>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="text-center">
+        <button class="btn btn-outline-secondary" id="btn-layout">自由摆放</button>
+        <button class="btn btn-outline-secondary" id="btn-race">正式比赛</button>
+    </div>
+</div>
+
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="node_modules/tether/dist/js/tether.min.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="node_modules/flipclock/compiled/flipclock.min.js"></script>
+<script src="node_modules/select2/dist/js/select2.full.min.js"></script>
+<script src="team.js"></script>
+
+<script>
+    const MAIN_TIME = 600;
+    const PAUSE_TIME = 120;
+    const DEBUG_TIME = 60;
+    const LAYOUT_TIME = 120;
+
+    var clock_main = $('#clock-main').FlipClock(0, {
+        countdown: true,
+        autoStart: false,
+        clockFace: 'MinuteCounter'
+    });
+
+    var clock_debug = $('#clock-debug').FlipClock(0, {
+        countdown: true,
+        autoStart: false,
+        clockFace: 'MinuteCounter'
+    });
+
+    var clock_left_pause = $('#clock-left-pause').FlipClock(0, {
+        countdown: true,
+        autoStart: false,
+        clockFace: 'MinuteCounter'
+    });
+
+    var clock_right_pause = $('#clock-right-pause').FlipClock(0, {
+        countdown: true,
+        autoStart: false,
+        clockFace: 'MinuteCounter'
+    });
+
+    function initLayout() {
+        $('#text-main').html('自由摆放剩余时间');
+        $('#pause-wrapper').hide();
+        $('#debug-wrapper').hide();
+        clock_main.reset();
+        clock_main.setTime(LAYOUT_TIME);
+    }
+
+    function initRace() {
+        $('#text-main').html('比赛剩余时间');
+        $('#pause-wrapper').show();
+        $('#debug-wrapper').show();
+        clock_main.reset();
+        clock_main.setTime(MAIN_TIME);
+        clock_left_pause.reset();
+        clock_left_pause.setTime(PAUSE_TIME);
+        clock_right_pause.reset();
+        clock_right_pause.setTime(PAUSE_TIME);
+        clock_debug.reset();
+        clock_debug.setTime(DEBUG_TIME);
+    }
+
+    initLayout();
+
+    $('#btn-start').on('click', function () {
+        clock_main.start();
+        clock_debug.stop();
+        clock_left_pause.stop();
+        clock_right_pause.stop();
+    });
+
+    $('#btn-debug').on('click', function () {
+        clock_debug.start();
+        clock_main.stop();
+        clock_left_pause.stop();
+        clock_right_pause.stop();
+    });
+
+    $('#btn-left-pause').on('click', function () {
+        clock_left_pause.start();
+        clock_debug.stop();
+        clock_main.stop();
+        clock_right_pause.stop();
+    });
+
+    $('#btn-right-pause').on('click', function () {
+        clock_right_pause.start();
+        clock_debug.stop();
+        clock_main.stop();
+        clock_left_pause.stop();
+    });
+
+    $('#btn-layout').on('click', initLayout);
+    $('#btn-race').on('click', initRace);
+
+    function selectTemplate(item) {
+        return item.id + '# ' + item.text;
+    }
+
+    var $select_left = $('#select-left');
+    $select_left.select2({
+        data: window.teams,
+        placeholder: "---",
+        allowClear: true,
+        templateResult: selectTemplate
+    });
+
+    var $select_right = $('#select-right');
+    $select_right.select2({
+        data: window.teams,
+        placeholder: "---",
+        allowClear: true,
+        templateResult: selectTemplate
+    });
+
+    $select_left.on('select2:select', function (e) {
+        changeTeamName(e.params.data.id + '#<br>' + e.params.data.text, $('#left-team-name'));
+    });
+    $select_left.on('select2:unselect', function (e) {
+        changeTeamName('', $('#left-team-name'));
+    });
+    $select_right.on('select2:select', function (e) {
+        changeTeamName(e.params.data.id + '#<br>' + e.params.data.text, $('#right-team-name'));
+    });
+    $select_right.on('select2:unselect', function (e) {
+        changeTeamName('', $('#right-team-name'));
+    });
+    function changeTeamName(name, container) {
+        container.html(name);
+    }
+
+</script>
 
 </body>
 </html>

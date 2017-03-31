@@ -1,0 +1,25 @@
+body {
+    background-color: black;
+}
+
+.footer {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+}
+
+h1, h2, h3, h4, h5, .display-4 {
+    color: aliceblue;
+}
+
+.clock {
+    width: 300px;
+}
+
+.clock-main {
+    zoom: 200%;
+}
+
+select {
+    width: 150px;
+}
