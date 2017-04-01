@@ -1,7 +1,7 @@
 /**
  * Created by liu on 17-3-31.
  */
-const MAIN_TIME = 600;
+const MAIN_TIME = 300;
 const PAUSE_TIME = 120;
 const DEBUG_TIME = 60;
 const LAYOUT_TIME = 120;

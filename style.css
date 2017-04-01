@@ -15,7 +15,7 @@ body {
     color: aliceblue;
 }
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, .display-1, .display-2, .display-3, .display-4 {
     color: aliceblue;
 }
 
@@ -25,6 +25,10 @@ h1, h2, h3, h4, h5 {
 
 .clock-main {
     zoom: 200%;
+}
+
+.clock-pause {
+    zoom: 130%;
 }
 
 select {

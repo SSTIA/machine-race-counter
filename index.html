@@ -14,39 +14,40 @@
 <div class="container-fluid">
     <div class="row" id="main-wrapper">
         <div class="col-3 text-center">
-            <h2 class="mt-5 team-red">红队</h2>
+            <div class="display-3 mt-5 mb-3 team-red">红队</div>
             <select id="select-left">
                 <option></option>
             </select>
-            <div class="display-3 mt-5 team-red" id="left-team-name"></div>
+            <div class="display-2 mt-5 team-red" id="left-team-name"></div>
         </div>
         <div class="col-6" align="center">
-            <h1 class="mt-5" id="text-main"></h1>
+            <div class="display-1 mt-5" id="text-main"></div>
             <div class="clock clock-main" id="clock-main"></div>
             <button class="btn btn-lg btn-outline-secondary" id="btn-start"><i class="fa fa-play"></i></button>
         </div>
         <div class="col-3 text-center">
-            <h2 class="mt-5 team-blue">蓝队</h2>
+            <div class="display-3 mt-5 mb-3 team-blue">蓝队</div>
             <select id="select-right">
                 <option></option>
             </select>
-            <div class="display-3 mt-5 team-blue" id="right-team-name"></div>
+            <div class="display-2 mt-5 team-blue" id="right-team-name"></div>
         </div>
     </div>
 
-    <div align="center" id="debug-wrapper">
-        <h5 class="mt-5">调试剩余时间</h5>
-        <div class="clock clock-pause" id="clock-debug"></div>
-        <button class="btn btn-outline-secondary" id="btn-debug"><i class="fa fa-cog"></i></button>
-    </div>
-    <div class="row" id="pause-wrapper">
-        <div class="col-4 offset-1" align="center">
-            <h5 class="mt-5">暂停剩余时间</h5>
+
+    <div class="row" id="pause-wrapper" style="display: none;">
+        <div class="col-3 offset-1" align="center">
+            <h1 class="mt-5">暂停剩余时间</h1>
             <div class="clock clock-pause" id="clock-left-pause"></div>
             <button class="btn btn-outline-secondary" id="btn-left-pause"><i class="fa fa-pause"></i></button>
         </div>
-        <div class="col-4 offset-2" align="center">
-            <h5 class="mt-5">暂停剩余时间</h5>
+        <div class="col-4" align="center" id="debug-wrapper">
+            <h1 class="mt-5">调试剩余时间</h1>
+            <div class="clock clock-pause" id="clock-debug"></div>
+            <button class="btn btn-outline-secondary" id="btn-debug"><i class="fa fa-cog"></i></button>
+        </div>
+        <div class="col-3" align="center">
+            <h1 class="mt-5">暂停剩余时间</h1>
             <div class="clock clock-pause" id="clock-right-pause"></div>
             <button class="btn btn-outline-secondary" id="btn-right-pause"><i class="fa fa-pause"></i></button>
         </div>
