@@ -132,8 +132,11 @@ function selectTemplate(item) {
     return item.id + '# ' + item.text;
 }
 
+var teams_arr = {};
+
 for (var i = 0; i < window.teams.length; i++) {
     window.teams[i].text = window.teams[i].id + '# ' + window.teams[i].value;
+    teams_arr[window.teams[i].id] = i;
 }
 
 
@@ -154,14 +157,14 @@ $select_right.select2({
 });
 
 $select_left.on('select2:select', function (e) {
-    var item = window.teams[e.params.data.id - 1];
+    var item = window.teams[teams_arr[e.params.data.id]];
     changeTeamName(item.id + '#<br>' + item.value, $('#left-team-name'));
 });
 $select_left.on('select2:unselect', function (e) {
     changeTeamName('', $('#left-team-name'));
 });
 $select_right.on('select2:select', function (e) {
-    var item = window.teams[e.params.data.id - 1];
+    var item = window.teams[teams_arr[e.params.data.id]];
     changeTeamName(item.id + '#<br>' + item.value, $('#right-team-name'));
 });
 $select_right.on('select2:unselect', function (e) {
