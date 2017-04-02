@@ -51,8 +51,8 @@ function stopAllClock() {
 
 function initLayout() {
     $('#text-main').html('自由摆放剩余时间');
-    $('#pause-wrapper').hide();
-    $('#debug-wrapper').hide();
+    $('.pause-wrapper').hide();
+    $('.debug-wrapper').addClass('offset-4');
     clock_main.reset();
     clock_main.setTime(LAYOUT_TIME);
     stopAllClock();
@@ -60,8 +60,8 @@ function initLayout() {
 
 function initRace() {
     $('#text-main').html('比赛剩余时间');
-    $('#pause-wrapper').show();
-    $('#debug-wrapper').show();
+    $('.pause-wrapper').show();
+    $('.debug-wrapper').removeClass('offset-4');
     clock_main.reset();
     clock_main.setTime(MAIN_TIME);
     clock_left_pause.reset();
