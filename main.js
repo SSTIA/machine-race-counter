@@ -55,6 +55,8 @@ function initLayout() {
     $('.debug-wrapper').addClass('offset-4');
     clock_main.reset();
     clock_main.setTime(LAYOUT_TIME);
+    clock_debug.reset();
+    clock_debug.setTime(DEBUG_TIME);
     stopAllClock();
 }
 
@@ -130,12 +132,17 @@ function selectTemplate(item) {
     return item.id + '# ' + item.text;
 }
 
+for (var i = 0; i < window.teams.length; i++) {
+    window.teams[i].text = window.teams[i].id + '# ' + window.teams[i].value;
+}
+
+
 var $select_left = $('#select-left');
 $select_left.select2({
     data: window.teams,
     placeholder: "---",
     allowClear: true,
-    templateResult: selectTemplate
+    //templateResult: selectTemplate
 });
 
 var $select_right = $('#select-right');
@@ -143,17 +150,19 @@ $select_right.select2({
     data: window.teams,
     placeholder: "---",
     allowClear: true,
-    templateResult: selectTemplate
+    //templateResult: selectTemplate
 });
 
 $select_left.on('select2:select', function (e) {
-    changeTeamName(e.params.data.id + '#<br>' + e.params.data.text, $('#left-team-name'));
+    var item = window.teams[e.params.data.id - 1];
+    changeTeamName(item.id + '#<br>' + item.value, $('#left-team-name'));
 });
 $select_left.on('select2:unselect', function (e) {
     changeTeamName('', $('#left-team-name'));
 });
 $select_right.on('select2:select', function (e) {
-    changeTeamName(e.params.data.id + '#<br>' + e.params.data.text, $('#right-team-name'));
+    var item = window.teams[e.params.data.id - 1];
+    changeTeamName(item.id + '#<br>' + item.value, $('#right-team-name'));
 });
 $select_right.on('select2:unselect', function (e) {
     changeTeamName('', $('#right-team-name'));
