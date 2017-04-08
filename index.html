@@ -23,7 +23,8 @@
         <div class="col-6" align="center">
             <div class="display-1 mt-5" id="text-main"></div>
             <div class="clock clock-main" id="clock-main"></div>
-            <button class="btn btn-lg btn-outline-secondary" id="btn-start"><i class="fa fa-play"></i></button>
+            <button class="btn btn-lg btn-outline-secondary mr-1" id="btn-start"><i class="fa fa-play"></i></button>
+            <button class="btn btn-lg btn-outline-secondary ml-1" id="btn-switch"><i class="fa fa-refresh"></i></button>
         </div>
         <div class="col-3 text-center">
             <div class="display-3 mt-5 mb-3 team-blue">蓝队</div>
@@ -57,7 +58,8 @@
 <div class="btn-group-bottom">
     <div class="text-center">
         <button class="btn btn-lg btn-outline-secondary mr-1" id="btn-layout">自由摆放</button>
-        <button class="btn btn-lg btn-outline-secondary ml-1" id="btn-race">正式比赛</button>
+        <button class="btn btn-lg btn-outline-secondary ml-1 mr-1" id="btn-race">正式比赛</button>
+        <button class="btn btn-lg btn-outline-secondary ml-1" id="btn-transition">过渡时间</button>
     </div>
 </div>
 
@@ -67,6 +69,8 @@
     </div>
 </div>
 
+<audio id="audio-timer" src="timer.wav" controls="controls" loop="loop" hidden="hidden" data-count="0"></audio>
+
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
 <script src="node_modules/tether/dist/js/tether.min.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -74,6 +78,7 @@
 <script src="node_modules/select2/dist/js/select2.full.min.js"></script>
 <script src="team.js"></script>
 <script src="main.js"></script>
+
 
 </body>
 </html>
