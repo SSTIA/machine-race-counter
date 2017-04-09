@@ -167,7 +167,7 @@ $('#btn-debug').on('click', function () {
 });
 
 $('#btn-left-pause').on('click', function () {
-    if (clock_left.stopFlag) {
+    if (clock_left_pause.stopFlag) {
         stopAllClock();
         clock_left_pause.stopFlag = false;
         clock_left_pause.start();
@@ -179,7 +179,7 @@ $('#btn-left-pause').on('click', function () {
 });
 
 $('#btn-right-pause').on('click', function () {
-    if (clock_right.stopFlag) {
+    if (clock_right_pause.stopFlag) {
         stopAllClock();
         clock_right_pause.stopFlag = false;
         clock_right_pause.start();
