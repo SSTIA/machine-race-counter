@@ -1,11 +1,11 @@
 /**
  * Created by liu on 17-3-31.
  */
-const MAIN_TIME = 300;
+const MAIN_TIME = 420;
 const PAUSE_TIME = 120;
 const DEBUG_TIME = 60;
 const LAYOUT_TIME = 120;
-const TRANSITION_TIME = 180;
+const TRANSITION_TIME = 240;
 const LATE_TIME = 600;
 const AUDIO_TIME = 10;
 
